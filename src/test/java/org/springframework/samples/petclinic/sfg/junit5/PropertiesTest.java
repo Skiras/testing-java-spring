@@ -26,7 +26,7 @@ public class PropertiesTest {
     }
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private HearingInterpreter hearingInterpreter;
 
     @Test
     void whatIheard() {

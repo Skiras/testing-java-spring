@@ -13,7 +13,6 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -23,29 +22,26 @@ import static org.mockito.BDDMockito.then;
 class ClinicServiceImplTest {
 
     @Mock
-    PetRepository petRepository;
+    private PetRepository petRepository;
 
     @Mock
-    VetRepository vetRepository;
+    private VetRepository vetRepository;
 
     @Mock
-    OwnerRepository ownerRepository;
+    private OwnerRepository ownerRepository;
 
     @Mock
-    VisitRepository visitRepository;
+    private VisitRepository visitRepository;
 
     @InjectMocks
-    ClinicServiceImpl service;
+    private ClinicServiceImpl service;
 
     @Test
     void findPetTypes() {
-        //given
-        List<PetType> petTypeList = new ArrayList<>();
-        given(petRepository.findPetTypes()).willReturn(petTypeList);
-        //when
+        given(petRepository.findPetTypes()).willReturn(new ArrayList<>());
+
         Collection<PetType> returnedPetTypes = service.findPetTypes();
 
-        //then
         then(petRepository).should().findPetTypes();
         assertThat(returnedPetTypes).isNotNull();
     }

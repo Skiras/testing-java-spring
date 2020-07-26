@@ -12,7 +12,6 @@ import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,23 +27,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class VetControllerTest {
 
     @Mock
-    ClinicService clinicService;
+    private ClinicService clinicService;
 
     @Mock
-    Map<String, Object> model;
+    private Map<String, Object> model;
 
     @InjectMocks
-    VetController controller;
+    private VetController controller;
 
-    List<Vet> vetsList = new ArrayList<>();
-
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @BeforeEach
     void setUp() {
-        vetsList.add(new Vet());
-
-        given(clinicService.findVets()).willReturn(vetsList);
+        given(clinicService.findVets()).willReturn(List.of(new Vet()));
 
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
@@ -52,17 +47,15 @@ class VetControllerTest {
     @Test
     void testControllerShowVetList() throws Exception {
         mockMvc.perform(get("/vets.html"))
-            .andExpect(status().isOk())
-            .andExpect(model().attributeExists("vets"))
-            .andExpect(view().name("vets/vetList"));
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("vets"))
+                .andExpect(view().name("vets/vetList"));
     }
 
     @Test
     void showVetList() {
-        //when
         String view = controller.showVetList(model);
 
-        //then
         then(clinicService).should().findVets();
         then(model).should().put(anyString(), any());
         assertThat("vets/VetList").isEqualToIgnoringCase(view);
@@ -70,10 +63,8 @@ class VetControllerTest {
 
     @Test
     void showResourcesVetList() {
-        //when
         Vets vets = controller.showResourcesVetList();
 
-        //then
         then(clinicService).should().findVets();
         assertThat(vets.getVetList()).hasSize(1);
     }

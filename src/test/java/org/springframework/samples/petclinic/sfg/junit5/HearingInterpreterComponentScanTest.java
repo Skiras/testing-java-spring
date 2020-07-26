@@ -23,7 +23,7 @@ class HearingInterpreterComponentScanTest {
     }
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private HearingInterpreter hearingInterpreter;
 
     @Test
     void whatIheard() {

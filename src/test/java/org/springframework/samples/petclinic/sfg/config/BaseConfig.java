@@ -1,8 +1,10 @@
-package org.springframework.samples.petclinic.sfg;
+package org.springframework.samples.petclinic.sfg.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.samples.petclinic.sfg.HearingInterpreter;
+import org.springframework.samples.petclinic.sfg.WordProducer;
 
 /**
  * Created by jt on 2019-02-16.
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 public class BaseConfig {
 
     @Bean
-    HearingInterpreter hearingInterpreter(WordProducer wordProducer){
+    HearingInterpreter hearingInterpreter(WordProducer wordProducer) {
         return new HearingInterpreter(wordProducer);
     }
 }

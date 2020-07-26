@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic.sfg;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.sfg.config.BaseConfig;
+import org.springframework.samples.petclinic.sfg.config.YannyConfig;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class HearingInterpreterYannyTest {
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private HearingInterpreter hearingInterpreter;
 
     @Test
     public void whatIheard() {
